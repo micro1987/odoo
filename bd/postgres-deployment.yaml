@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: odoo-db
+   namespace: odoo
+   labels:
+      app: odoo-db
+spec:
+   replicas: 1
+   selector:
+      matchLabels:
+        app: odoo-db
+   template:
+      metadata:
+         name: odoo-db
+         labels:
+            app: odoo-db
+      spec:
+         containers:
+         - name: odoo-db
+           image: postgres:9.6
+           ports:
+           - name: db-port
+             protocol: TCP
+             containerPort: 5432
+           volumeMounts:
+           - mountPath: /var/lib/postgresql/data
+             name: pvc001
+           env:
+           - name: POSTGRES_USER
+             valueFrom:
+               secretKeyRef:
+                  name: odoo-secret 
+                  key: postgres_user       
+           - name: POSTGRES_PASSWORD
+             valueFrom:
+               secretKeyRef:
+                  name: odoo-secret
+                  key: postgres_password 
+           - name: POSTGRES_DB
+             value: postgres
+         volumes:
+         - name: pvc001
+           persistentVolumeClaim:
+              claimName: pvc-pgsql
+
+
+
+
