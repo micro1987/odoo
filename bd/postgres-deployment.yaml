@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
    name: odoo-db
-   namespace: odoo
+   namespace: odoo-demo
    labels:
       app: odoo-db
 spec:
