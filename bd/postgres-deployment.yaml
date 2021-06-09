@@ -5,6 +5,8 @@ metadata:
    namespace: odoo-demo
    labels:
       app: odoo-db
+   annotations:
+      fluxcd.io/automated: "true" 
 spec:
    replicas: 1
    selector:
