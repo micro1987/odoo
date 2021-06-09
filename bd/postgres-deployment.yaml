@@ -42,6 +42,8 @@ spec:
               key: postgres_password
         - name: POSTGRES_DB
           value: postgres
+        - name: VAR1
+          value: value1
       volumes:
       - name: pvc001
         persistentVolumeClaim:
