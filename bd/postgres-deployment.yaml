@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: odoo-db
-        image: postgres:9-alpine
+        image: postgres:10-stretch
         ports:
         - name: db-port
           protocol: TCP
